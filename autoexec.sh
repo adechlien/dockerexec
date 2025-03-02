@@ -8,25 +8,34 @@ fi
 SCRIPT=$1
 EXT="${SCRIPT##*.}"
 
+# Ruta completa del archivo en la carpeta samples
+FULL_PATH="samples/$SCRIPT"
+
+# Verificar si el archivo existe
+if [ ! -f "$FULL_PATH" ]; then
+  echo "Error: File '$FULL_PATH' not found."
+  exit 1
+fi
+
 case $EXT in
   py)
-    DOCKERFILE="python.Dockerfile"
+    DOCKERFILE="dfiles/python.Dockerfile"
     CONTAINER_NAME="python-container"
     ;;
   java)
-    DOCKERFILE="java.Dockerfile"
+    DOCKERFILE="dfiles/java.Dockerfile"
     CONTAINER_NAME="java-container"
     ;;
   cpp)
-    DOCKERFILE="cpp.Dockerfile"
+    DOCKERFILE="dfiles/cpp.Dockerfile"
     CONTAINER_NAME="cpp-container"
     ;;
   js)
-    DOCKERFILE="js.Dockerfile"
+    DOCKERFILE="dfiles/js.Dockerfile"
     CONTAINER_NAME="js-container"
     ;;
   rb)
-    DOCKERFILE="ruby.Dockerfile"
+    DOCKERFILE="dfiles/ruby.Dockerfile"
     CONTAINER_NAME="ruby-container"
     ;;
   *)
@@ -35,23 +44,16 @@ case $EXT in
     ;;
 esac
 
-# Copiar el archivo al directorio actual
-cp $SCRIPT .
+# Copiar el archivo al directorio actual con el nombre correcto
+cp "$FULL_PATH" script.$EXT
 
 # Build the container
 echo "Building $CONTAINER_NAME container..."
 docker build -t $CONTAINER_NAME -f $DOCKERFILE .
 
 # Run the script inside the container
-START_TIME=$(date +%s%N)
-
 echo "Running $SCRIPT in $CONTAINER_NAME..."
 docker run --rm $CONTAINER_NAME
 
-END_TIME=$(date +%s%N)
-ELAPSED_TIME=$((($END_TIME - $START_TIME)/1000000))
-
-echo "Tiempo de ejecución: ${ELAPSED_TIME}ms"
-
 # Limpiar: eliminar el archivo copiado
-rm $(basename $SCRIPT)
+rm script.$EXT

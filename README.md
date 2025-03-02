@@ -7,13 +7,13 @@ For the implementation, it is highly recommended the use of [Play with Docker](h
 ## How to implement
 ### Clone the repository
 ```bash
-git clone https://github.com/adechlien/dockerexec/ 
+git clone https://github.com/adechlien/dockerexec/
 cd dockerexec
 ```
 
 ### Build and run the script
 ```bash
-  ./autoexec.sh sample.<ext>
+./autoexec.sh sample.<ext>
 ```
 
 To see the different scripts available to run, watch the `samples/` directory.
@@ -21,13 +21,13 @@ To see the different scripts available to run, watch the `samples/` directory.
 ## Usage example
 Running
 ```bash
-  ./autoexec.sh sample.js
+./autoexec.sh sample.js
 ```
 ### Output:
 
 ```bash
-  Hello from JavaScript!
-  Time execution: 820ms
+Hello from JavaScript!
+Time execution: 820ms
 ```
 
 ## Supported Languages
