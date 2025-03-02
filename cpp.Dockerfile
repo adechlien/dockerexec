@@ -2,9 +2,11 @@ FROM gcc:latest
 
 WORKDIR /app
 
-# Copiar un script interno para compilar y ejecutar
-COPY run-cpp.sh /app/run-cpp.sh
-RUN chmod +x /app/run-cpp.sh
+# Copiar el archivo específico
+COPY samples/sample.cpp .
 
-# Ejecutar el script
-CMD ["/app/run-cpp.sh"]
+# Compilar el archivo
+RUN g++ -o sample sample.cpp
+
+# Ejecutar el binario compilado
+CMD ["./sample"]

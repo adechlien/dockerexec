@@ -35,7 +35,6 @@ case $EXT in
     ;;
 esac
 
-#++
 # Copiar el archivo al directorio actual
 cp $SCRIPT .
 
@@ -47,15 +46,12 @@ docker build -t $CONTAINER_NAME -f $DOCKERFILE .
 START_TIME=$(date +%s%N)
 
 echo "Running $SCRIPT in $CONTAINER_NAME..."
-#++
 docker run --rm $CONTAINER_NAME
-#--
-# docker run --rm -v "$(pwd)/$SCRIPT":/app/script.$EXT $CONTAINER_NAME
 
 END_TIME=$(date +%s%N)
 ELAPSED_TIME=$((($END_TIME - $START_TIME)/1000000))
 
-echo "Time execution: ${ELAPSED_TIME}ms"
+echo "Tiempo de ejecución: ${ELAPSED_TIME}ms"
 
 # Limpiar: eliminar el archivo copiado
 rm $(basename $SCRIPT)

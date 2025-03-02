@@ -2,9 +2,11 @@ FROM openjdk:11-jdk-slim
 
 WORKDIR /app
 
-# Copiar un script interno para compilar y ejecutar
-COPY run-java.sh /app/run-java.sh
-RUN chmod +x /app/run-java.sh
+# Copiar el archivo específico
+COPY samples/sample.java .
 
-# Ejecutar el script
-CMD ["/app/run-java.sh"]
+# Compilar el archivo
+RUN javac sample.java
+
+# Ejecutar el archivo compilado
+CMD ["java", "sample"]
