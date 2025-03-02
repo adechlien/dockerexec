@@ -1,7 +1,7 @@
 # Automatic code execution using containers
 Shell script for automatically detect the extension of a given script and execute its code.
 
-## Prerequisites
+## Requisites
 For the implementation, it is highly recommended the use of [Play with Docker](https://labs.play-with-docker.com/).
 
 ## How to implement
@@ -16,7 +16,13 @@ cd dockerexec
 ./autoexec.sh sample.<ext>
 ```
 
-To see the different scripts available to run, watch the `samples/` directory.
+## Sample files
+`samples/` directory contains the following files:
+- `sample.cpp`: For C++
+- `sample.py`: For Python
+- `sample.js`: For JavaScript
+- `sample.rb`: For Ruby
+- `sample.java`: For Java
 
 ## Usage example
 Running
@@ -29,13 +35,6 @@ Running
 Hello from JavaScript!
 Time execution: 820ms
 ```
-
-## Supported Languages
-- C++ (.cpp)
-- Python (.py)
-- JavaScript (.js)
-- Ruby (.rb)
-- Java (.java)
 
 ## Members
 🐺 Kidman Cabana \
