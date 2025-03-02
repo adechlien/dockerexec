@@ -2,4 +2,8 @@ FROM python:3.9-slim
 
 WORKDIR /app
 
-CMD ["python", "/app/script.py"]
+# Copiar el archivo específico
+COPY script.py .
+
+# Ejecutar el archivo
+CMD ["python", "script.py"]
